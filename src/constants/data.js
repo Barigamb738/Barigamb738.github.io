@@ -1,11 +1,11 @@
 const userData = {
-  githubUsername: "manuarora700",
-  name: "Manu Arora",
-  designation: "Full-Stack Developer",
+  githubUsername: "Barigamb738",
+  name: "Barigamb",
+  designation: "Game Developer",
   avatarUrl: "/avatar.png",
-  email: "manuarorawork@gmail.com",
-  phone: "+91 9587738861",
-  address: "Jaipur, Rajasthan, India.",
+  email: "barigambdev@gmail.com",
+  phone: "nah bro",
+  address: "nah bro",
   projects: [
     {
       title: "Tailwind Master Kit",
