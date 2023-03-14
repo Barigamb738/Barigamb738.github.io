@@ -1,17 +1,35 @@
-import Ubuntu from "../components/ubuntu";
-import ReactGA from 'react-ga';
-import Meta from "../components/SEO/Meta";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import ContainerBlock from "../components/ContainerBlock";
+import FavouriteProjects from "../components/FavouriteProjects";
+import LatestCode from "../components/LatestCode";
+import Hero from "../components/Hero";
+import getLatestRepos from "@lib/getLatestRepos";
+import userData from "@constants/data";
 
-const TRACKING_ID = process.env.NEXT_PUBLIC_TRACKING_ID;
-ReactGA.initialize(TRACKING_ID);
-
-function App() {
+export default function Home({ repositories }) {
   return (
-    <>
-      <Meta />
-      <Ubuntu />
-    </>
-  )
+    <ContainerBlock
+      title="Manu Arora - Developer, Writer, Creator"
+      description="This is a template built specifically for my blog - Creating a developer portfolio that gets you a job."
+    >
+      <Hero />
+      <FavouriteProjects />
+      <LatestCode repositories={repositories} />
+    </ContainerBlock>
+  );
 }
 
-export default App;
+export const getServerSideProps = async () => {
+  console.log(process.env.GITHUB_AUTH_TOKEN);
+  let token = process.env.GITHUB_AUTH_TOKEN;
+
+  const repositories = await getLatestRepos(userData, token);
+  // console.log("REPOSITORIES", repositories);
+
+  return {
+    props: {
+      repositories,
+    },
+  };
+};
